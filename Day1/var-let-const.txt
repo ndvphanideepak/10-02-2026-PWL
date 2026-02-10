@@ -74,3 +74,162 @@ Use case	Choose
 Value never changes	const ✅
 Value changes	let ✅
 Old legacy code	var ⚠️
+
+DataTypes:
+8 DataTypes and 7 are primitive
+1) string
+2)number
+3)boolean
+4)undefined
+5)null(represent intentionall absense)
+6)bigint
+7)symbol(data type whose instances are unique and immutable 
+8)Object type(Object,Array,Date..etc))
+
+Object is not primitive type and rest all 7 are primitives 
+non primitive starts with capital letter
+
+Symbol:
+Real-life example (office cupboard 🔐)
+
+Imagine an office cupboard.
+
+Cupboard has many drawers
+
+Each drawer has a label
+
+Normal label (string key)
+"file"
+
+
+👉 Anyone can open it if they know the name
+
+Secret label (Symbol key)
+Symbol("file")
+
+
+👉 Only you have the key
+👉 Even if someone writes "file", they cannot open it
+
+🟢 Step 1: Create a Symbol (secret key)
+const secretKey = Symbol("salary");
+
+
+Think:
+🗝️ “I created a private key called salary”
+
+🟢 Step 2: Use it inside an object
+const employee = {
+  name: "Deepak",
+  age: 35,
+  [secretKey]: 50000
+};
+
+
+📌 Square brackets mean:
+👉 “Use the value of secretKey, not the word secretKey”
+
+🟢 Step 3: Access it (only with the key)
+console.log(employee[secretKey]); // 50000
+
+
+✔ Works
+❌ This will NOT work:
+
+employee.salary   // undefined
+
+🫥 Step 4: Why others can’t see it
+console.log(Object.keys(employee));
+// ["name", "age"]
+
+
+Salary is hidden 🔒
+This is the whole point of Symbol
+
+🧠 Stop here — this is enough to understand Symbol
+Remember just this:
+
+Symbol is a secret, unique key for an object
+
+Nothing more is required.
+
+❓ Quick yes/no check (answer in your head)
+
+1️⃣ Can two Symbols be same? ❌ No
+2️⃣ Is Symbol a string? ❌ No
+3️⃣ Do we use Symbol daily? ❌ No
+4️⃣ Is Symbol for special/hidden cases? ✅ Yes
+
+🏁 One-line interview answer (simple)
+
+Symbol is used to create unique and hidden object property keys to avoid conflicts.
+
+Big idea (one line)
+
+Symbol → hidden object key
+
+#private → truly private class variable
+
+🟢 Example 1: Symbol (hidden, but still accessible if you have the key)
+const secret = Symbol("password");
+
+class User {
+  constructor(name, pwd) {
+    this.name = name;
+    this[secret] = pwd;
+  }
+}
+
+const u = new User("Deepak", "12345");
+
+console.log(u[secret]); // 12345 ✅ (if you have the symbol)
+
+
+📌 Meaning:
+
+Hidden from loops
+
+Not visible normally
+
+But not 100% private
+
+🔵 Example 2: #private (real privacy 🔐)
+class User {
+  #password;
+
+  constructor(name, pwd) {
+    this.name = name;
+    this.#password = pwd;
+  }
+
+  showPassword() {
+    return this.#password;
+  }
+}
+
+const u = new User("Deepak", "12345");
+
+console.log(u.showPassword()); // 12345 ✅
+console.log(u.#password);      // ❌ ERROR
+
+
+📌 Meaning:
+
+Cannot be accessed outside the class
+
+Compiler-level protection
+
+Truly private
+
+
+
+Symbol 🗝️ → You can open the door if you have the key
+
+#private 🔐 → Door cannot be opened from outside, no matter what
+
+🏆 Interview one-liner
+
+Use Symbol to avoid property name collisions, and #private when you need true encapsulation.
+
+
+
