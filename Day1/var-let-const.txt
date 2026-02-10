@@ -1,0 +1,76 @@
+var
+
+Old JavaScript way (avoid in modern code)
+
+Function scoped (not block scoped)
+
+Can be redeclared
+
+Can be reassigned
+
+Gets hoisted (but initialized as undefined)
+
+var x = 10;
+var x = 20;   // allowed ❌ (causes bugs)
+x = 30;       // allowed
+
+
+⚠️ Problem:
+
+if (true) {
+  var a = 5;
+}
+console.log(a); // 5 😬 (leaks outside block)
+
+let
+
+Modern, safe replacement for var
+
+Block scoped
+
+❌ Cannot be redeclared in same scope
+
+✅ Can be reassigned
+
+Hoisted but not usable before declaration
+
+let y = 10;
+y = 20; // allowed
+
+if (true) {
+  let b = 5;
+}
+console.log(b); // ❌ Error (good!)
+
+const:
+const
+
+Best default choice
+
+Block scoped
+
+❌ Cannot be redeclared
+
+❌ Cannot be reassigned
+
+Must be initialized
+
+Object/array contents can change
+
+const z = 10;
+z = 20; // ❌ Error
+
+
+But this is OK 👇
+
+const arr = [1, 2];
+arr.push(3); // allowed
+
+const obj = { a: 1 };
+obj.a = 2;   // allowed
+
+When to use what
+Use case	Choose
+Value never changes	const ✅
+Value changes	let ✅
+Old legacy code	var ⚠️
