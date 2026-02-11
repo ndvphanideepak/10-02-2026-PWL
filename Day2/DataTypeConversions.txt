@@ -1,0 +1,33 @@
+parseInt()
+parseFloat()
+toString()
+
+Operators :
+Ternary
+
+isTrue ? yes:No
+
+comparison Operators
+== : compare value
+===: compare value and type as well
+!=
+!==
+>
+<
+>=
+<=
+
+Logical:
+&&
+||
+!
+String:
++
+Assignment
+=
++=
+Arthiemetic 
++ ,-,*,**,%,/,++,--
+Relational 
+in
+instanceOf
